@@ -30,7 +30,14 @@ public class Voto {
 	@ManyToOne
 	@JoinColumn(name = "id_associado", referencedColumnName = "id")
 	private Associado associado;
+	
+	public Voto() {
+	}
 
+	public Voto(Long id) {
+		this.id = id;
+	}
+	
 	public Long getId() {
 		return id;
 	}

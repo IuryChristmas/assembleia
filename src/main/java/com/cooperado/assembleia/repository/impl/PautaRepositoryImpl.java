@@ -1,5 +1,7 @@
 package com.cooperado.assembleia.repository.impl;
 
-public class PautaRepositoryImpl {
+import com.cooperado.assembleia.repository.query.PautaRepositoryQuery;
+
+public class PautaRepositoryImpl implements PautaRepositoryQuery {
 
 }
