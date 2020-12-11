@@ -5,8 +5,8 @@ import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
-import com.cooperado.assembleia.model.Voto;
 import com.cooperado.assembleia.model.dto.VotoDTO;
+import com.cooperado.assembleia.model.enums.SimNaoEnum;
 import com.cooperado.assembleia.repository.query.VotoRepositoryQuery;
 
 public class VotoRepositoryImpl implements VotoRepositoryQuery {
@@ -29,6 +29,32 @@ public class VotoRepositoryImpl implements VotoRepositoryQuery {
 		} catch (NoResultException ex) {
 			return null;
 		}
+	}
+
+	@Override
+	public Long quantidadeVotosAFavor(Long idPauta) {
+		StringBuilder sql = new StringBuilder();
+		sql.append("SELECT count(vt.id) FROM votos vt")
+			.append(" WHERE vt.pauta.id = :idPauta AND vt.votoEnum = :votoEnum");
+		
+		Query query = manager.createQuery(sql.toString());
+		query.setParameter("idPauta", idPauta)
+			.setParameter("votoEnum", SimNaoEnum.SIM);
+		
+		return (Long) query.getSingleResult();
+	}
+
+	@Override
+	public Long quantidadeVotosContra(Long idPauta) {
+		StringBuilder sql = new StringBuilder();
+		sql.append("SELECT count(vt.id) FROM votos vt")
+			.append(" WHERE vt.pauta.id = :idPauta AND vt.votoEnum = :votoEnum");
+		
+		Query query = manager.createQuery(sql.toString());
+		query.setParameter("idPauta", idPauta)
+			.setParameter("votoEnum", SimNaoEnum.NAO);
+		
+		return (Long) query.getSingleResult();
 	}
 
 }

@@ -1,39 +1,22 @@
-package com.cooperado.assembleia.model;
+package com.cooperado.assembleia.model.dto;
 
 import java.util.Date;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 
 import com.cooperado.assembleia.model.enums.SimNaoEnum;
 import com.cooperado.assembleia.model.enums.Status;
 
-@Entity(name = "pautas")
-public class Pauta {
+public class PautaDTO {
 
-	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@Column
 	private String titulo;
 	
-	@Column(name = "data_criacao")
 	private Date dataCriacao;
 	
-	@Column(name = "status")
-	@Enumerated(EnumType.ORDINAL)
 	private Status status; 
 	
-	@Column(name = "liberar_votacao")
 	private SimNaoEnum liberarVotacao;
 
-	@Column(name = "data_hora_inicio_votacao")
 	private Date dataHoraInicio;
 	
 	public Long getId() {

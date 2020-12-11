@@ -1,0 +1,1 @@
+alter table pautas add column data_hora_inicio_votacao timestamp;
