@@ -21,6 +21,7 @@ public class PautaRepositoryImpl implements PautaRepositoryQuery {
 		StringBuilder sql = new StringBuilder();
 		sql.append("SELECT pt FROM pautas pt");
 		this.buildWhere(sql, filtro);
+		sql.append(" ORDER BY pt.status DESC");
 		
 		Query query = manager.createQuery(sql.toString());
 		this.addParameters(query, filtro);

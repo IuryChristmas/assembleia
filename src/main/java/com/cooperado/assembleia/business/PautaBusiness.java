@@ -33,6 +33,8 @@ public class PautaBusiness {
 	@Autowired
 	private MessageSource messageSource;
 	
+	private static final String PAUTA_LIBERADA = "";
+	
 	@Transactional(rollbackFor = Exception.class)
 	public Pauta salvar(Pauta pauta) {
 		pauta.setDataCriacao(new Date());
@@ -66,7 +68,7 @@ public class PautaBusiness {
 					LocaleContextHolder.getLocale());
 		}
 		
-		return "";
+		return PAUTA_LIBERADA;
 	}
 	
 	public Optional<Pauta> findById(Long id) {
