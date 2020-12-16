@@ -1,4 +1,4 @@
-#Instruções
+# Instruções
 O projeto utiliza Spring Boot com Java 8 e como gerenciador de dependências temos o Maven, então para que a mesma funcione corretamente é necessário ter o Java 8 em sua máquina ou no ambiente de workspace onde a aplicação será executada na IDE(Eclipse, InteliJ...), e ter o Maven seja ele instalado diretamente em sua máquina ou somente na IDE.
 Uma vez que o projeto tenha sido baixado e importado para sua IDE de preferência, em geral as IDEs já baixam as dependências no momento da importação, do contrário é necessário executar um maven update para que ele possa buscar pelas dependências do projeto.
 A porta que está sendo utilizada é a 9000, caso ela não esteja disponível em sua máquina, altere para uma porta de sua preferência que esteja livre.
