@@ -1,15 +1,20 @@
+#Instruções
+O projeto utiliza Spring Boot com Java 8 e como gerenciador de dependências temos o Maven, então para que a mesma funcione corretamente é necessário ter o Java 8 em sua máquina ou no ambiente de workspace onde a aplicação será executada na IDE(Eclipse, InteliJ...), e ter o Maven seja ele instalado diretamente em sua máquina ou somente na IDE.
+Uma vez que o projeto tenha sido baixado e importado para sua IDE de preferência, em geral as IDEs já baixam as dependências no momento da importação, do contrário é necessário executar um maven update para que ele possa buscar pelas dependências do projeto.
+A porta que está sendo utilizada é a 9000, caso ela não esteja disponível em sua máquina, altere para uma porta de sua preferência que esteja livre.
+No banco de dados temos a aplicação utilizando o MySQL, para que a aplicação funcione deve-se atentar às seguintes configurações no application.properties
+
+spring.jpa.database=MYSQL
+spring.datasource.url=jdbc:mysql://localhost:3306/sincredi?createDatabaseIfNotExist=true&allowPublicKeyRetrieval=true&useSSL=false&useTimezone=true&serverTimezone=UTC
+spring.datasource.username=root 
+spring.datasource.password=root
+
+A database será criada automáticamente com o nome de sincredi, se por acaso a porta do MySQL seja diferente da 3306, por favor substituir pela porta correta nos campos de usuername e password devem ser alterados para seu usuário e senha de acessos ao banco.
+Com estas configurações realizadas, no momento da execução da aplicação, os scripts de banco serão executados automaticamente e as tabelas necessárias serão criadas.
+
 # Tarefa Bônus 4 - Versionamento da API
 ## Como você versionaria a API da sua aplicação? Que estratégia usar?
 
-Seguiria o esquema de branchs: Master, Develop, Hotfix, Features e Releases
-Existiriam as branchs principais a partir das quais as outras iriam derivar, seriam elas: Master e Develop
-
-Onde a partir da develop seriam criadas sempre que necessárias as branchas de features e releases, seguindo a seguinte nomenclatura, para as branchs do tipo feature que envolveriam qualquer nova funcionalidade para a aplicação deveriam ser feitas seguindo o padrão feature/nomeQueRepresenteFuncionalidade e após concluída a branch deverá ser atualizada com a develop para receber qualquer atualização que possa ter sido feita e após isso, ser aberto o merge request para à develop e após aprovação, ser feito o merge.
-
-O que nos leva as branchs do tipo release, que devem ser feitas a partir da develop, após a conclusão das branchs do tipo feature terem sido mergeadas, features estas que podem ser definidas antes por meio de reuniões, quais irão entrar em uma determinada release para que então possam ser testadas as melhorias feitas e uma vez aprovadas, a branch release criada, deverá ser feito o merge com o master. A criação da branch release deverá seguir o padrão release/2020(substituir por ano atual).0(alterado somente quando for definido que a versão tiver sido concluida e uma nova estiver sendo criada).1(deverá ser adicionado +1 a cada nova branch release criada). Após aprovado o merge, a brancha release deverá ser excluida.
-
-A partir da branch master é que serão criadas as branchs do tipo hotfix, que envolverão qualquer bug descoberto em produção, após a correção do mesmo, a modificação deverá ser mergeada para master e então a develop deverá ser atualizada com as alterações na master, para recuperar a correção realizada. A branch de hotfix deverá seguir o seguinte padrão hotfix/nomeFuncionalidadeCorrigida.
-
-A master é também a branch que deverá ser mais estável, pois serão as funcionalidades, correções presentes nela que serão enviadas para produção.
-
-![git_flow](https://github.com/IuryChristmas/assembleia/blob/master/gitflow.png)
+Para o versionamento da API poderia ser utilizado o modelo via PATH, com a versão da API devendo ser utilizada logo após a URL base da aplicação
+Ex: http://api.assembleia/v1/
+Desse modo acredito que além de ficar mais claro qual versão da API deve ser chamada, a URL se torna mais amigável, de modo que somente a numeração deva ser alterada para acessar uma versão específica da API.
